@@ -8,7 +8,8 @@ from flask import Flask, request
 
 def insecure_compare(hash, signature):
     for i in range(len(hash)):
-        time.sleep(0.005)
+        # time.sleep is in seconds
+        time.sleep(0.0025)
         if hash[i] != signature[i]:
             return False
     return True
