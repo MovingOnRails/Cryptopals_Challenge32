@@ -68,6 +68,8 @@ long executeRequest(unsigned char* HMAC, long long *elapsedTime){
             return 0;
         }
     }
+    free(url);
+    free(HMAC_Hex);
 }
 
 
@@ -220,10 +222,15 @@ int main(){
     //testForMeanTime403and200();
     
     unsigned char* brokenMAC = break_HMACSHA1_with_side_channel();
-    for(int i=0;i<20;i++){
-        printf("%02x",brokenMAC[i]);
+        if (brokenMAC != NULL){
+            for(int i=0;i<20;i++){
+            printf("%02x",brokenMAC[i]);
+        }
+        printf("\n");
+    } else {
+        printf("brokenMAC not found");
     }
-    printf("\n");
+    
 
     return 0;
 }
